@@ -10,7 +10,7 @@
 Module.register("MMM-PIR-Notification", {
 
     defaults: {
-        pin: 23,
+        pin: 18,
         timeoutDelay: 5000,
     },
 
