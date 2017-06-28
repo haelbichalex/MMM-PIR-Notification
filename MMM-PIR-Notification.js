@@ -9,27 +9,33 @@
 
 Module.register("MMM-PIR-Notification", {
 
-	defaults: {
-		pin: 4,
-		timeout: 5000,
-	},
+    defaults: {
+        pin: 4,
+        timeoutDelay: 5000,
+    },
 
-	requiresVersion: "2.1.0", // Required version of MagicMirror
+    requiresVersion: "2.1.0", // Required version of MagicMirror
 
-	start: function() {
+    start: function () {
+        this.sendSocketNotification('CONFIG', this.config);
         Log.info('Starting module: ' + this.name);
-	},
+    },
 
 
-	getDom: function() {
-		var wrapper = document.createElement("div");
-		return wrapper;
-	},
+    getDom: function () {
+        var wrapper = document.createElement("div");
+        return wrapper;
+    },
 
-	// socketNotificationReceived from helper
-	socketNotificationReceived: function (notification, payload) {
-		if(notification === "PIR_MOTION_DETECTED") {
-			this.dataNotification = payload;
-		}
-	},
+    // socketNotificationReceived from helper
+    socketNotificationReceived: function (notification, payload) {
+        if (notification === "USER_MOVEMENT") {
+            Log.info(notification + ':::' + payload);
+            if (payload) {
+                this.sendNotification('CURRENT_PROFILE', 'default');
+            } else {
+                this.sendNotification('CURRENT_PROFILE', 'empty');
+            }
+        }
+    },
 });

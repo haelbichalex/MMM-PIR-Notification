@@ -6,42 +6,36 @@
  */
 
 var NodeHelper = require("node_helper");
+const Gpio = require('onoff').Gpio;
 
 module.exports = NodeHelper.create({
 
-	// Override socketNotificationReceived method.
+    start: function () {
+        var self = this;
+        console.log("Starting node helper for: " + self.name);
+        this.started = false;
+    },
 
-	/* socketNotificationReceived(notification, payload)
-	 * This method is called when a socket notification arrives.
-	 *
-	 * argument notification string - The identifier of the noitication.
-	 * argument payload mixed - The payload of the notification.
-	 */
-	socketNotificationReceived: function(notification, payload) {
-		if (notification === "{{MODULE_NAME}}-NOTIFICATION_TEST") {
-			console.log("Working notification system. Notification:", notification, "payload: ", payload);
-			// Send notification
-			this.sendNotificationTest(this.anotherFunction()); //Is possible send objects :)
-		}
-	},
+    socketNotificationReceived: function (notification, payload) {
+        if (notification === "CONFIG") {
+            const self = this;
+            this.config = payload;
+            this.pir = new Gpio(this.config.pin, 'in', 'both');
 
-	// Example function send notification test
-	sendNotificationTest: function(payload) {
-		this.sendSocketNotification("{{MODULE_NAME}}-NOTIFICATION_TEST", payload);
-	},
+            this.pir.watch(function (err, value) {
+                if (value == 1) {
+                    self.sendSocketNotification('USER_MOVEMENT', true);
+                    clearTimeout(self.timeout);
 
-	// this you can create extra routes for your module
-	extraRoutes: function() {
-		var self = this;
-		this.expressApp.get("/{{MODULE_NAME}}/extra_route", function(req, res) {
-			// call another function
-			values = self.anotherFunction();
-			res.send(values);
-		});
-	},
+                } else if (value == 0) {
+                    self.timeout = setTimeout(function () {
+                        self.sendSocketNotification('USER_MOVEMENT', false);
+                    }, self.config.timeoutDelay);
+                }
+            });
 
-	// Test another function
-	anotherFunction: function() {
-		return {date: new Date()};
-	}
+            this.started = true;
+        }
+    },
+
 });

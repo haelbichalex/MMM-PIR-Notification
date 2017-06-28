@@ -1,18 +1,31 @@
 {
-  "name": "{{MODULE_NAME}}",
+  "name": "MMM-PIR-Notification",
   "version": "1.0.0",
-  "description": "{{DESCRIPTION}}",
-  "main": "{{MODULE_NAME}}.js",
-  "author": "{{AUTHOR_NAME}}",
-  "license": "{{LICENSE}}",
-
+  "description": "PIR motion sensor module for the Magic Mirror.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haelbichalex/MMM-PIR-Notification"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "PIR-Sensor",
+    "module",
+    "motion"
+  ],
+  "author": "Alexander Haelbich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haelbichalex/MMM-PIR-Notification/issues"
+  },
+  "homepage": "https://github.com/haelbichalex/MMM-PIR-Notification#readme",
+  "scripts": {
+    "postinstall": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
+  },
   "dependencies": {
     "onoff": "latest"
   },
   "devDependencies": {
     "electron-rebuild": "^1.2.1"
-  },
-  "scripts": {
-    "postinstall": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
-  },
+  }
 }
