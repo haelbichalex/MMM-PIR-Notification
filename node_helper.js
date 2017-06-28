@@ -29,9 +29,9 @@ module.exports = NodeHelper.create({
             this.pir.watch(function (err, value) {
                 if (value == 1) {
                     self.sendSocketNotification('USER_MOVEMENT', true);
-                    clearTimeout(self.timeout);
+                    clearTimeout(self.localTimeout);
                 } else if (value == 0) {
-                    self.timeout = setTimeout(function () {
+                    self.localTimeout = setTimeout(function () {
                         self.sendSocketNotification('USER_MOVEMENT', false);
                     }, self.config.timeoutDelay);
                 }
