@@ -14,17 +14,18 @@ module.exports = NodeHelper.create({
         var self = this;
         console.log("Starting node helper for: " + self.name);
         console.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
-        Log.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
         this.started = false;
         self.sendSocketNotification('USER_MOVEMENT', true);
     },
 
     socketNotificationReceived: function (notification, payload) {
-        if (notification === "CONFIG") {
+        if (notification === "CONFIG" && this.started == false) {
             const self = this;
             this.config = payload;
 
             this.pir = new Gpio(this.config.pin, 'in', 'both');
+            console.log(this.pir);
+
             this.pir.watch(function (err, value) {
                 if (value == 1) {
                     self.sendSocketNotification('USER_MOVEMENT', true);
