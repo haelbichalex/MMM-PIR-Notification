@@ -21,12 +21,13 @@ Module.register("MMM-PIR-Notification", {
 
 
     socketNotificationReceived: function (notification, payload) {
+        const self = this;
         if (notification === "USER_MOVEMENT") {
             console.log(notification + 'USER MOVEMENT: ' + payload);
             if (payload) {
-                this.sendNotification('CURRENT_PROFILE', 'default');
+                self.sendNotification('CURRENT_PROFILE', 'default');
             } else {
-                this.sendNotification('CURRENT_PROFILE', 'empty');
+                self.sendNotification('CURRENT_PROFILE', 'empty');
             }
         }
     },
