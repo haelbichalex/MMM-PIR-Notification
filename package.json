@@ -1,0 +1,18 @@
+{
+  "name": "{{MODULE_NAME}}",
+  "version": "1.0.0",
+  "description": "{{DESCRIPTION}}",
+  "main": "{{MODULE_NAME}}.js",
+  "author": "{{AUTHOR_NAME}}",
+  "license": "{{LICENSE}}",
+
+  "dependencies": {
+    "onoff": "latest"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.2.1"
+  },
+  "scripts": {
+    "postinstall": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
+  },
+}
