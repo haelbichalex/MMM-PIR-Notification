@@ -16,7 +16,7 @@ Module.register("MMM-PIR-Notification", {
 
     start: function () {
         this.sendSocketNotification('CONFIG', this.config);
-        Log.info('Starting module: ' + this.name);
+        console.log('Starting module: ' + this.name);
     },
 
 
@@ -27,7 +27,7 @@ Module.register("MMM-PIR-Notification", {
 
     socketNotificationReceived: function (notification, payload) {
         if (notification === "USER_MOVEMENT") {
-            Log.info(notification + ':::' + payload);
+            console.log(notification + ':::' + payload);
             if (payload) {
                 this.sendNotification('CURRENT_PROFILE', 'default');
             } else {
