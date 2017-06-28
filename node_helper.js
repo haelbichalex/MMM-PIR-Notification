@@ -26,14 +26,19 @@ module.exports = NodeHelper.create({
             this.pir = new Gpio(this.config.pin, 'in', 'both');
             console.log(this.pir);
 
+            self.wasMoving = false;
             this.pir.watch(function (err, value) {
                 if (value == 1) {
                     self.sendSocketNotification('USER_MOVEMENT', true);
                     clearTimeout(self.localTimeout);
+                    wasMoving = true;
                 } else if (value == 0) {
-                    self.localTimeout = setTimeout(function () {
-                        self.sendSocketNotification('USER_MOVEMENT', false);
-                    }, self.config.timeoutDelay);
+                    if (wasMoving) {
+                        self.localTimeout = setTimeout(function () {
+                            self.sendSocketNotification('USER_MOVEMENT', false);
+                            wasMoving = false;
+                        }, self.config.timeoutDelay);
+                    }
                 }
             });
 
