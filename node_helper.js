@@ -26,7 +26,7 @@ module.exports = NodeHelper.create({
             this.pir = new Gpio(this.config.pin, 'in', 'both');
             console.log(this.pir);
 
-            self.wasMoving = false;
+            self.wasMoving = true;
             this.pir.watch(function (err, value) {
                 if (value == 1) {
                     if (!self.wasMoving) {
