@@ -5,8 +5,8 @@
  * {{LICENSE}} Licensed.
  */
 
-var NodeHelper = require("node_helper");
-const Gpio = require('onoff').Gpio;
+//const Gpio = require('onoff').Gpio;
+const NodeHelper = require("node_helper");
 
 module.exports = NodeHelper.create({
 
@@ -20,7 +20,8 @@ module.exports = NodeHelper.create({
         if (notification === "CONFIG") {
             const self = this;
             this.config = payload;
-            this.pir = new Gpio(this.config.pin, 'in', 'both');
+
+            /*this.pir = new Gpio(this.config.pin, 'in', 'both');
 
             this.pir.watch(function (err, value) {
                 if (value == 1) {
@@ -33,6 +34,7 @@ module.exports = NodeHelper.create({
                     }, self.config.timeoutDelay);
                 }
             });
+            */
 
             this.started = true;
         }
