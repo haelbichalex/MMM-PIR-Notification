@@ -14,6 +14,7 @@ module.exports = NodeHelper.create({
         var self = this;
         console.log("Starting node helper for: " + self.name);
         this.started = false;
+        self.sendSocketNotification('USER_MOVEMENT', true);
     },
 
     socketNotificationReceived: function (notification, payload) {
@@ -32,7 +33,6 @@ module.exports = NodeHelper.create({
                     }, self.config.timeoutDelay);
                 }
             });
-
 
             this.started = true;
         }
