@@ -37,7 +37,7 @@ module.exports = NodeHelper.create({
                         self.localTimeout = setTimeout(function () {
                             self.sendSocketNotification('USER_MOVEMENT', false);
                             wasMoving = false;
-                        }, self.config.timeoutDelay);
+                        }, self.config.timeoutDelay * 1000);
                     }
                 }
             });

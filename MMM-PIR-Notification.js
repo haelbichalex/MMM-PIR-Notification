@@ -11,7 +11,7 @@ Module.register("MMM-PIR-Notification", {
 
     defaults: {
         pin: 23,
-        timeoutDelay: 10000,
+        timeoutDelay: 60,
     },
 
     start: function () {
@@ -34,10 +34,10 @@ Module.register("MMM-PIR-Notification", {
         const self = this;
         if (movement) {
             Log.error('MOVEMENT');
-            //self.sendNotification('CURRENT_PROFILE', 'default');
+            self.sendNotification('CURRENT_PROFILE', 'default');
         } else {
             Log.error('NO-MOVEMENT');
-            //self.sendNotification('CURRENT_PROFILE', 'empty');
+            self.sendNotification('CURRENT_PROFILE', 'empty');
         }
     }
 });
