@@ -22,8 +22,8 @@ Module.register("MMM-PIR-Notification", {
 
     socketNotificationReceived: function (notification, payload) {
         const self = this;
+        console.log(self);
         if (notification === "USER_MOVEMENT") {
-            console.log(notification + 'USER MOVEMENT: ' + payload);
             if (payload) {
                 self.sendNotification('CURRENT_PROFILE', 'default');
             } else {
