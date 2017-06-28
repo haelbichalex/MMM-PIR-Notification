@@ -16,7 +16,8 @@ Module.register("MMM-PIR-Notification", {
 
     start: function () {
         this.sendSocketNotification('CONFIG', this.config);
-        console.log('Starting module: ' + this.name);
+        console.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
+        Log.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
     },
 
 
