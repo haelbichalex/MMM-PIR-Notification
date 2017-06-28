@@ -13,6 +13,6 @@
   },
   "homepage": "https://github.com/haelbichalex/MMM-PIR-Notification#readme",
   "dependencies": {
-    "pigpio": "latest"
+    "onoff": "latest"
   }
 }

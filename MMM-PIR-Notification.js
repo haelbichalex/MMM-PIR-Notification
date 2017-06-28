@@ -3,7 +3,7 @@
 /* Magic Mirror
  * Module: MMM-PIR-Notification
  *
- * By {{AUTHOR_NAME}}
+ * By Alexander Haelbich
  * MIT Licensed.
  */
 
