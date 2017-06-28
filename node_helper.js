@@ -29,16 +29,16 @@ module.exports = NodeHelper.create({
             self.wasMoving = false;
             this.pir.watch(function (err, value) {
                 if (value == 1) {
-                    if (!wasMoving) {
+                    if (!self.wasMoving) {
                         self.sendSocketNotification('USER_MOVEMENT', true);
                         clearTimeout(self.localTimeout);
-                        wasMoving = true;
+                        self.wasMoving = true;
                     }
                 } else if (value == 0) {
-                    if (wasMoving) {
+                    if (self.wasMoving) {
                         self.localTimeout = setTimeout(function () {
                             self.sendSocketNotification('USER_MOVEMENT', false);
-                            wasMoving = false;
+                            self.wasMoving = false;
                         }, self.config.timeoutDelay * 1000);
                     }
                 }
