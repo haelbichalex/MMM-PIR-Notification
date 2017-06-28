@@ -6,7 +6,7 @@
  */
 
 const NodeHelper = require("node_helper");
-const Gpio = require('onoff').Gpio;
+const Gpio = require('pi-gpio');
 
 module.exports = NodeHelper.create({
 
