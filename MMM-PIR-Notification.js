@@ -24,4 +24,15 @@ Module.register("MMM-PIR-Notification", {
         var wrapper = document.createElement("div");
         return wrapper;
     },
+
+    socketNotificationReceived: function (notification, payload) {
+        if (notification === "USER_MOVEMENT") {
+            Log.info(notification + ':::' + payload);
+            if (payload) {
+                this.sendNotification('CURRENT_PROFILE', 'default');
+            } else {
+                this.sendNotification('CURRENT_PROFILE', 'empty');
+            }
+        }
+    },
 });
