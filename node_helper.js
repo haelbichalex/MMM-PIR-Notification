@@ -13,6 +13,8 @@ module.exports = NodeHelper.create({
     start: function () {
         var self = this;
         console.log("Starting node helper for: " + self.name);
+        console.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
+        Log.log('THIS IS A VERY LONG TESTTEXT WITH MULTIPLE LINES ' + this.name);
         this.started = false;
         self.sendSocketNotification('USER_MOVEMENT', true);
     },
